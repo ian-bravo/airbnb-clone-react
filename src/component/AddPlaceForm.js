@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 } from "uuid";
 
 function AddPlaceForm(props) {
   function whenSubmitClicked(event) {
@@ -9,8 +10,8 @@ function AddPlaceForm(props) {
       date: event.target.date.value,
       description: event.target.description.value,
       price: event.target.price.value,
+      id: v4(),
     });
-
     console.log("Location input:", event.target.location.value);
     console.log("Date input:", event.target.date.value);
     console.log("Description input:", event.target.description.value);
@@ -21,20 +22,20 @@ function AddPlaceForm(props) {
     <>
     <h2>Add Place Form</h2>  
       <form onSubmit={whenSubmitClicked}>
-        <label for="location">Add a location:</label>
+        <label htmlFor="location">Add a location:</label>
         <input type="text" name="location" />
         <br/>
-        <label for="date">Add a date:</label>
+        <label htmlFor="date">Add a date:</label>
         <input type="text" name="date" />
         <br/>
-        <label for="description">Add a description:</label>
+        <label htmlFor="description">Add a description:</label>
         <input type="text" name="description"/>
         <br/>
-        <label for="price">Add a price:</label>
+        <label htmlFor="price">Add a price:</label>
         <input type="text" name="price"/>
         <br/>
-        <button type="submit">Add a place</button>
-    </form>
+        <button type="submit">Add a place!</button>
+      </form>
     </>
   );
 }

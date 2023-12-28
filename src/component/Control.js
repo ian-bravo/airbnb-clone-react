@@ -6,9 +6,9 @@ function Control() {
   const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
   const [usePlaceList, setUsePlaceList] = useState([]);
 
-  // useEffect(() => {
-  //   console.log("handleAddingNewPlaceToList Result: ", usePlaceList);
-  // }, []);
+  useEffect(() => {
+    console.log("current usePlaceList: ", usePlaceList);
+  }, [usePlaceList]);
 
   const handleClick = () => {
     setFormVisibleOnPage(!formVisibleOnPage);
@@ -17,20 +17,17 @@ function Control() {
   const handleAddingNewPlaceToList = (newPlace) => {
     const newPlaceList = [...usePlaceList, newPlace];
     setUsePlaceList(newPlaceList);
-    // usePlaceList --> needs to be copied
-    // new entry coming from form --> this will be added to "usePlaceList"
-    // setUsePlaceList(**everything in here is now THE LIST**)
   }
-//need to display the list - 27 Dec 2023
+
 
   let currentlyVisibleComponent = null;
   let buttonText = null;
 
   if (formVisibleOnPage) {
-    currentlyVisibleComponent = <AddPlaceForm handleAddingNewPlaceToList={ handleAddingNewPlaceToList} />;
+    currentlyVisibleComponent = <AddPlaceForm handleClick={handleClick} handleAddingNewPlaceToList={ handleAddingNewPlaceToList} />;
     buttonText = "Back to Place List";
   } else {
-    currentlyVisibleComponent = <PlaceList />;
+    currentlyVisibleComponent = <PlaceList placeList={usePlaceList} />;
     buttonText = "Add New Place";
   }
 
