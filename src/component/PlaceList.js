@@ -8,11 +8,13 @@ function PlaceList(props) {
       <h2>Place List</h2>
       {props.placeList.map((entry) => 
         <Place
+          handleChangingSelectedPlace={props.handleChangingSelectedPlace}
           location={entry.location}
           description={entry.description}
           date={entry.date}
           price={entry.price}
           key={entry.id}
+          id={entry.id}
         />
       )}
     </>

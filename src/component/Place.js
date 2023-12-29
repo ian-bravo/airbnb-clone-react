@@ -2,12 +2,15 @@ import React from "react";
 import PictureCard from "./PictureCard";
 
 function Place(props) {
+  const { handleChangingSelectedPlace, location, description, date, price, id} = props;
   return (
     <PictureCard>
-      <h3>{props.location}</h3>
-      <p>{props.description}</p>
-      <p>{props.date}</p>
-      <p>{props.price}</p>
+      <div onClick={() => handleChangingSelectedPlace(id)}>
+        <h3>{location}</h3>
+        <p>{description}</p>
+        <p>{date}</p>
+        <p>{price}</p>
+      </div>
     </PictureCard>
   );
 }
