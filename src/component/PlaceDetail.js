@@ -1,7 +1,7 @@
 import React from "react";
 
 function PlaceDetail(props) {
-  const { place } = props;
+  const { place, handleEditClick } = props;
 
   return (
     <>
@@ -10,6 +10,7 @@ function PlaceDetail(props) {
       <p>{place.description}</p>
       <p>{place.date}</p>
       <p>{place.price}</p> 
+      <button onClick={handleEditClick}>Edit Place Details</button>
     </>
   );
 }

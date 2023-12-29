@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import PlaceList from "./PlaceList";
 import AddPlaceForm from "./AddPlaceForm";
 import PlaceDetail from "./PlaceDetail";
+import EditPlaceForm from "./EditPlaceForm";
 
 const startingData = [
   {
@@ -24,6 +25,7 @@ function Control() {
   const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
   const [usePlaceList, setUsePlaceList] = useState(startingData);
   const [selectedPlace, setSelectedPlace] = useState(null);
+  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     console.log("current usePlaceList: ", usePlaceList);
@@ -33,9 +35,17 @@ function Control() {
     console.log("handleChangingSelectedPlace, selectedPlace: ", selectedPlace);    
   },[selectedPlace]);
 
+  useEffect(() => {
+    if (selectedPlace !== null) {      
+      handleChangingSelectedPlace(selectedPlace.id);
+    }
+  }, [usePlaceList]);
+
   const handleClick = () => {
-    if (selectedPlace) {
-      setSelectedPlace(null);      
+    if (editing){
+      setEditing(false);
+    } else if (selectedPlace) {
+      setSelectedPlace(null);
     } else {
       setFormVisibleOnPage(!formVisibleOnPage);
     }
@@ -53,12 +63,23 @@ function Control() {
     setSelectedPlace(targetPlace);
   }
 
+  const handleEditClick = () => {
+    setEditing(true);
+  }
+
+  const handleUpdatingPlaceInList = (updatedPlace) => {
+    const newPlaceList = usePlaceList.filter((entry) => entry.id !== updatedPlace.id).concat(updatedPlace);
+    setUsePlaceList(newPlaceList);
+  }
 
   let currentlyVisibleComponent = null;
   let buttonText = null;
 
-  if (selectedPlace) {
-    currentlyVisibleComponent = <PlaceDetail place={selectedPlace} handleClick={handleClick}/>;
+  if (editing) {
+    currentlyVisibleComponent = <EditPlaceForm place={selectedPlace} handleUpdatingPlaceInList={handleUpdatingPlaceInList} />;
+    buttonText = "Back to Details";
+  } else if (selectedPlace) {
+    currentlyVisibleComponent = <PlaceDetail place={selectedPlace} handleEditClick={handleEditClick} handleClick={handleClick}/>;
     buttonText = "Back to Place List";
   } else if (formVisibleOnPage) {
     currentlyVisibleComponent = <AddPlaceForm handleClick={handleClick} handleAddingNewPlaceToList={handleAddingNewPlaceToList} />;
