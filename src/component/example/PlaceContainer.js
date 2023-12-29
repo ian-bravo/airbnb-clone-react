@@ -30,7 +30,7 @@ export default function PlaceContainer() {
     if (!selectedPlaceId) {
       return null;
     }
-    
+
     return places.find((place) => place.id === selectedPlaceId);
   }, [selectedPlaceId, places]);
 
@@ -49,7 +49,7 @@ export default function PlaceContainer() {
 
   if (addNewPlace) {
     return (
-      <PlaceForm 
+      <PlaceForm
         onSubmit={(place) => {
           setPlaces((places) => [...places, place]);
           setAddNewPlace(false);
@@ -61,7 +61,7 @@ export default function PlaceContainer() {
 
   if (selectedPlace) {
     return (
-      <PlaceDetails 
+      <PlaceDetails
         place={selectedPlace}
         onBack={() => setSelectedPlaceId(null)}
         onUpdate={handleUpdatePlace}

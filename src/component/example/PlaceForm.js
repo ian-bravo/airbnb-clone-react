@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 /**
- * PlaceForm is a fine name, having "edit" in the name is redundant since 
- * "form" implies editing. 
- * 
+ * PlaceForm is a fine name, having "edit" in the name is redundant since
+ * "form" implies editing.
+ *
  * We can also use the same form for adding a new place.
- * 
- * The form submit handler is exposed as `onSubmit`, the implementation details 
- * of what the parent does after submitting the form are not the concern of this 
+ *
+ * The form submit handler is exposed as `onSubmit`, the implementation details
+ * of what the parent does after submitting the form are not the concern of this
  * component.
  */
-export default function PlaceForm({ 
+export default function PlaceForm({
   // we can just destructure the props here
   place,
   onSubmit,
@@ -20,7 +20,7 @@ export default function PlaceForm({
   const [formData, setFormData] = useState(place);
 
   /**
-   * the input `name` prop is passed as event.target.name, which we can use to 
+   * the input `name` prop is passed as event.target.name, which we can use to
    * identify the property being updated, no need for refs
    */
   const handleFormFieldChange = (event) => {
@@ -31,7 +31,7 @@ export default function PlaceForm({
   };
 
   /**
-   * up for debate, but my preference is to name handler functions 
+   * up for debate, but my preference is to name handler functions
    * "handleEvent", "Event" being whatever the event is, in this case "submit".
    */
   const handleSubmit = (event) => {

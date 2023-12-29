@@ -10,7 +10,7 @@ export default function Places({
   return (
     <>
       <h2>Places: </h2>
-      {places.map((place) => 
+      {places.map((place) =>
         <Place
           key={place.id}
           place={place}
