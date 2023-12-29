@@ -34,6 +34,11 @@ export default function PlaceContainer() {
     return places.find((place) => place.id === selectedPlaceId);
   }, [selectedPlaceId, places]);
 
+  const handleAddPlace = (place) => {
+    setPlaces((places) => [...places, place]);
+    setAddNewPlace(false);
+  };
+
   const handleUpdatePlace = (updatedPlace) => {
     // use `.map` and return the updated place if the place id matches, otherwise
     // return the original place. this ensures that the original order is not
@@ -50,10 +55,7 @@ export default function PlaceContainer() {
   if (addNewPlace) {
     return (
       <PlaceForm
-        onSubmit={(place) => {
-          setPlaces((places) => [...places, place]);
-          setAddNewPlace(false);
-        }}
+        onSubmit={handleAddPlace}
         onCancel={() => setAddNewPlace(false)}
       />
     );
