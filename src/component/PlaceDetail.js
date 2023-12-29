@@ -1,7 +1,7 @@
 import React from "react";
 
 function PlaceDetail(props) {
-  const { place, handleEditClick } = props;
+  const { place, handleEditClick, handleDeletePlace } = props;
 
   return (
     <>
@@ -11,6 +11,7 @@ function PlaceDetail(props) {
       <p>{place.date}</p>
       <p>{place.price}</p> 
       <button onClick={handleEditClick}>Edit Place Details</button>
+      <button onClick={() => handleDeletePlace(place)}>Delete this Place</button>
     </>
   );
 }

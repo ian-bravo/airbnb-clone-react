@@ -23,7 +23,7 @@ const startingData = [
 
 function Control() {
   const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
-  const [usePlaceList, setUsePlaceList] = useState(startingData);
+  const [usePlaceList, setUsePlaceList] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [editing, setEditing] = useState(false);
 
@@ -36,7 +36,8 @@ function Control() {
   },[selectedPlace]);
 
   useEffect(() => {
-    if (selectedPlace !== null) {      
+    // if (selectedPlace !== null || selectedPlace !== undefined) {      
+    if (selectedPlace) {      
       handleChangingSelectedPlace(selectedPlace.id);
     }
   }, [usePlaceList]);
@@ -54,6 +55,7 @@ function Control() {
   const handleAddingNewPlaceToList = (newPlace) => {
     const newPlaceList = [...usePlaceList, newPlace];
     setUsePlaceList(newPlaceList);
+    console.log("added a place?");
   }
 
   //show detail
@@ -72,6 +74,11 @@ function Control() {
     setUsePlaceList(newPlaceList);
   }
 
+  const handleDeletePlace = (deletePlace) => {
+    const deleteThisPlace = usePlaceList.filter((entry) => entry.id !== deletePlace.id);
+    setUsePlaceList(deleteThisPlace);
+  }
+
   let currentlyVisibleComponent = null;
   let buttonText = null;
 
@@ -79,7 +86,7 @@ function Control() {
     currentlyVisibleComponent = <EditPlaceForm place={selectedPlace} handleUpdatingPlaceInList={handleUpdatingPlaceInList} />;
     buttonText = "Back to Details";
   } else if (selectedPlace) {
-    currentlyVisibleComponent = <PlaceDetail place={selectedPlace} handleEditClick={handleEditClick} handleClick={handleClick}/>;
+    currentlyVisibleComponent = <PlaceDetail place={selectedPlace} handleEditClick={handleEditClick} handleClick={handleClick} handleDeletePlace={handleDeletePlace}/>;
     buttonText = "Back to Place List";
   } else if (formVisibleOnPage) {
     currentlyVisibleComponent = <AddPlaceForm handleClick={handleClick} handleAddingNewPlaceToList={handleAddingNewPlaceToList} />;
