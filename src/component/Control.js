@@ -32,11 +32,11 @@ function Control() {
   }, [usePlaceList]);
 
   useEffect(() => {
-    console.log("handleChangingSelectedPlace, selectedPlace: ", selectedPlace);    
+    console.log("handleChangingSelectedPlace, selectedPlace: ", selectedPlace);
   },[selectedPlace]);
 
   useEffect(() => {
-    if (selectedPlace !== null) {      
+    if (selectedPlace !== null) {
       handleChangingSelectedPlace(selectedPlace.id);
     }
   }, [usePlaceList]);
@@ -50,7 +50,7 @@ function Control() {
       setFormVisibleOnPage(!formVisibleOnPage);
     }
   }
-  
+
   const handleAddingNewPlaceToList = (newPlace) => {
     const newPlaceList = [...usePlaceList, newPlace];
     setUsePlaceList(newPlaceList);
