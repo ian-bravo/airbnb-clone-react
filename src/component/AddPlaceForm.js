@@ -1,7 +1,21 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { v4 } from "uuid";
 
 function AddPlaceForm(props) {
+  const [allChecked, setAllChecked] = useState([]);
+
+  // useEffect(() => {
+  //   console.log("AddPlaceForm checkboxes allChecked: ", allChecked);
+  // }, [allChecked]);
+
+  function handleChange(e) {
+    if (e.target.checked) {
+      setAllChecked([...allChecked, e.target.value]);
+    } else {
+      setAllChecked(allChecked.filter((item) => item !== e.target.value));
+    }
+  }
+  
   function whenSubmitClicked(event) {
     event.preventDefault();
 
@@ -10,12 +24,9 @@ function AddPlaceForm(props) {
       date: event.target.date.value,
       description: event.target.description.value,
       price: event.target.price.value,
+      tag: allChecked,
       id: v4(),
     });
-    console.log("Location input:", event.target.location.value);
-    console.log("Date input:", event.target.date.value);
-    console.log("Description input:", event.target.description.value);
-    console.log("Price input:", event.target.price.value);
   }
   
   return (
@@ -33,6 +44,17 @@ function AddPlaceForm(props) {
         <br/>
         <label htmlFor="price">Add a price:</label>
         <input type="text" name="price"/>
+        <br/>
+        <input value = "farm" type = "checkbox" onChange={handleChange} />
+        <span>farm</span>
+        <input value = "tower" type = "checkbox" onChange={handleChange} />
+        <span>tower</span>
+        <input value = "condo" type = "checkbox" onChange={handleChange} />
+        <span>condo</span>
+        <input value = "cabin" type = "checkbox" onChange={handleChange} />
+        <span>cabin</span>
+        <input value = "guesthouse" type = "checkbox" onChange={handleChange} />
+        <span>guesthouse</span>
         <br/>
         <button type="submit">Add a place!</button>
       </form>

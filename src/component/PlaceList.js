@@ -15,6 +15,7 @@ function PlaceList(props) {
           price={entry.price}
           key={entry.id}
           id={entry.id}
+          tags={entry.tags}
         />
       )}
     </>

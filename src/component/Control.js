@@ -6,34 +6,59 @@ import EditPlaceForm from "./EditPlaceForm";
 
 const startingData = [
   {
-    location: "Seattle, Washington",
-    description: "cozy, close to attractions",
     date: "Jan 4th",
-    price: "100",
+    description: "cozy, close to attractions",
     id: 1,
+    location: "Seattle, Washington",
+    price: "100",
+    tags: ["farm", "cabin", "tower"],
+    // farm: true,
+    // cabin: true,
+    // tower: true,
+    // condo: false,
+    // guesthouse: false
   },
   {
-    location: "Portland, Oregon",
-    description: "urban center, waterfront",
     date: "Jan 2nd",
-    price: "200",
+    description: "urban center, waterfront",
     id: 2,
+    location: "Portland, Oregon",
+    price: "200",
+    tags: ["condo"],
+    // farm: false,
+    // cabin: false,
+    // tower: false,
+    // condo: true,
+    // guesthouse: false
+  },
+  {
+    date: "NYE",
+    description: "in the hills",
+    id: 3,
+    location: "Seattle, Washington",
+    price: "100",
+    tags: ["condo", "guesthouse"],
+    // farm: false,
+    // cabin: false,
+    // tower: false,
+    // condo: true,
+    // guesthouse: true
   }
 ];
 
 function Control() {
   const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
-  const [usePlaceList, setUsePlaceList] = useState([]);
+  const [usePlaceList, setUsePlaceList] = useState(startingData);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [editing, setEditing] = useState(false);
 
-  useEffect(() => {
-    console.log("current usePlaceList: ", usePlaceList);
-  }, [usePlaceList]);
+  // useEffect(() => {
+  //   console.log("current usePlaceList: ", usePlaceList);
+  // }, [usePlaceList]);
 
-  useEffect(() => {
-    console.log("handleChangingSelectedPlace, selectedPlace: ", selectedPlace);    
-  },[selectedPlace]);
+  // useEffect(() => {
+  //   console.log("handleChangingSelectedPlace, selectedPlace: ", selectedPlace);    
+  // },[selectedPlace]);
 
   useEffect(() => {
     // if (selectedPlace !== null || selectedPlace !== undefined) {      
@@ -55,7 +80,7 @@ function Control() {
   const handleAddingNewPlaceToList = (newPlace) => {
     const newPlaceList = [...usePlaceList, newPlace];
     setUsePlaceList(newPlaceList);
-    console.log("added a place?");
+    console.log("handleAddingNewPlaceToList: ", newPlace);
   }
 
   //show detail

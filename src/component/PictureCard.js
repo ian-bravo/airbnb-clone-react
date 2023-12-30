@@ -5,7 +5,7 @@ function PictureCard(props) {
   
   const divStyle = {
     width: '200px',
-    height: '200px',
+    height: '230px',
     border: '1.5px solid black',
     borderRadius: '2px',
     padding: '4px',

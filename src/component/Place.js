@@ -2,7 +2,7 @@ import React from "react";
 import PictureCard from "./PictureCard";
 
 function Place(props) {
-  const { handleChangingSelectedPlace, location, description, date, price, id} = props;
+  const { handleChangingSelectedPlace, location, description, date, price, id, tags} = props;
   return (
     <PictureCard>
       <div onClick={() => handleChangingSelectedPlace(id)}>
@@ -10,6 +10,11 @@ function Place(props) {
         <p>{description}</p>
         <p>{date}</p>
         <p>{price}</p>
+        <ul>
+        {tags.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+        </ul>
       </div>
     </PictureCard>
   );
