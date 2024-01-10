@@ -12,6 +12,14 @@ function EditPlaceForm(props) {
     id: place.id,
   };
 
+  const sampleInitialState = {
+    location: "Seattle, Washington",
+    description: "cozy, close to attractions",
+    date: "Jan 4th",
+    price: "100",
+    tags: ["farm", "cabin", "tower"],
+    id: 1,
+  }
   
   const [placeProperties, setPlaceProperties] = useState(initialState);
   // Keeps track of check boxes.
@@ -75,7 +83,7 @@ function EditPlaceForm(props) {
       tags: allChecked,
     }))
   }, [allChecked]);
-//pre-populate checkboxes 29 Dec 2023
+
   useEffect(() => {
     if (locationInputRef.current) {
       locationInputRef.current.value = place.location || "";
@@ -108,6 +116,18 @@ function EditPlaceForm(props) {
     // });
   }
 
+  //pre-populate checkboxes 9 Jan 2024
+  // Check the initial state "tags" value. 
+  // placeProperties.tags = ["condo", "farm"];
+
+  // if input checkbox has id matching a tag, make it checked to start.
+
+
+  // if(placeProperties.tags)
+  //
+
+  const [isChecked, setIsChecked] = useState(true);
+
   return (
     <>
       <h2>Edit Place Form</h2>
@@ -124,13 +144,13 @@ function EditPlaceForm(props) {
         <label htmlFor="price">Edit price:</label>
         <input ref={priceInputRef} type="text" name="price" onChange={handleChange}/>
         <br/>     
-        <input value = "farm" type = "checkbox" onChange={handleChangeCheckboxes} />
+        <input value="farm" type="checkbox" onChange={handleChangeCheckboxes} />
         <span>farm</span>
-        <input value = "tower" type = "checkbox" onChange={handleChangeCheckboxes} />
+        <input value="tower" type="checkbox" checked={someVariable} onChange={handleChangeCheckboxes} />
         <span>tower</span>
-        <input value = "condo" type = "checkbox" onChange={handleChangeCheckboxes} />
+        <input value = "condo" type = "checkbox"  onChange={handleChangeCheckboxes} />
         <span>condo</span>
-        <input value = "cabin" type = "checkbox" onChange={handleChangeCheckboxes} />
+        <input value = "cabin" type = "checkbox"  onChange={handleChangeCheckboxes} />
         <span>cabin</span>
         <input value = "guesthouse" type = "checkbox" onChange={handleChangeCheckboxes} />
         <span>guesthouse</span>

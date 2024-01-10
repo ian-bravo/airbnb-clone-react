@@ -97,6 +97,7 @@ function Control() {
   const handleUpdatingPlaceInList = (updatedPlace) => {
     const newPlaceList = usePlaceList.filter((entry) => entry.id !== updatedPlace.id).concat(updatedPlace);
     setUsePlaceList(newPlaceList);
+    setEditing(false);
   }
 
   const handleDeletePlace = (deletePlace) => {
