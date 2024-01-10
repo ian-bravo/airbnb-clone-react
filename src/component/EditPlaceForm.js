@@ -20,7 +20,7 @@ function EditPlaceForm(props) {
     tags: ["farm", "cabin", "tower"],
     id: 1,
   }
-  
+
   const [placeProperties, setPlaceProperties] = useState(initialState);
   // Keeps track of check boxes.
   const [allChecked, setAllChecked] = useState([]);

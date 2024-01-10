@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import PlaceList from "./PlaceList";
 import AddPlaceForm from "./AddPlaceForm";
 import PlaceDetail from "./PlaceDetail";
-import EditPlaceForm from "./EditPlaceForm";
+import PlaceForm from "./PlaceForm";
 
 const startingData = [
   {
@@ -80,6 +80,7 @@ function Control() {
   const handleAddingNewPlaceToList = (newPlace) => {
     const newPlaceList = [...usePlaceList, newPlace];
     setUsePlaceList(newPlaceList);
+    setFormVisibleOnPage(false);
     console.log("handleAddingNewPlaceToList: ", newPlace);
   }
 
@@ -109,19 +110,21 @@ function Control() {
   let buttonText = null;
 
   if (editing) {
-    currentlyVisibleComponent = <EditPlaceForm place={selectedPlace} handleUpdatingPlaceInList={handleUpdatingPlaceInList} />;
+    currentlyVisibleComponent = <PlaceForm place={selectedPlace} onSubmit={handleUpdatingPlaceInList} />;
+    // currentlyVisibleComponent = <EditPlaceForm place={selectedPlace} handleUpdatingPlaceInList={handleUpdatingPlaceInList} />;
     buttonText = "Back to Details";
   } else if (selectedPlace) {
     currentlyVisibleComponent = <PlaceDetail place={selectedPlace} handleEditClick={handleEditClick} handleClick={handleClick} handleDeletePlace={handleDeletePlace}/>;
     buttonText = "Back to Place List";
   } else if (formVisibleOnPage) {
-    currentlyVisibleComponent = <AddPlaceForm handleClick={handleClick} handleAddingNewPlaceToList={handleAddingNewPlaceToList} />;
+    currentlyVisibleComponent = <PlaceForm onSubmit={handleAddingNewPlaceToList} />;
+    // currentlyVisibleComponent = <AddPlaceForm handleClick={handleClick} handleAddingNewPlaceToList={handleAddingNewPlaceToList} />;
     buttonText = "Back to Place List";
   } else {
     currentlyVisibleComponent = <PlaceList placeList={usePlaceList} handleChangingSelectedPlace={handleChangingSelectedPlace}/>;
     buttonText = "Add New Place";
   }
-
+  
   return (
     <>
       <h2>Control</h2>

@@ -10,13 +10,13 @@ function PlaceDetail(props) {
       <p>{place.description}</p>
       <p>{place.date}</p>
       <p>{place.price}</p> 
-      <ul>
+      {/* <ul>
         {place.tags.map((tag, index) => (
           <li key={index}>
             {tag}
           </li>
         ))}
-      </ul>
+      </ul> */}
       <button onClick={handleEditClick}>Edit Place Details</button>
       <button onClick={() => handleDeletePlace(place)}>Delete this Place</button>
     </>
