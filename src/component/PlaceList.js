@@ -13,9 +13,10 @@ function PlaceList(props) {
           description={entry.description}
           date={entry.date}
           price={entry.price}
+          farm={entry.farm}
+          condo={entry.condo}
           key={entry.id}
           id={entry.id}
-          tags={entry.tags}
         />
       )}
     </>

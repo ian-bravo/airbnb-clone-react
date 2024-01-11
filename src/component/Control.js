@@ -11,11 +11,10 @@ const startingData = [
     id: 1,
     location: "Seattle, Washington",
     price: "100",
-    tags: ["farm", "cabin", "tower"],
-    // farm: true,
+    farm: true,
     // cabin: true,
     // tower: true,
-    // condo: false,
+    condo: false,
     // guesthouse: false
   },
   {
@@ -24,11 +23,11 @@ const startingData = [
     id: 2,
     location: "Portland, Oregon",
     price: "200",
-    tags: ["condo"],
-    // farm: false,
+    // tags: ["condo"],
+    farm: false,
     // cabin: false,
     // tower: false,
-    // condo: true,
+    condo: true,
     // guesthouse: false
   },
   {
@@ -37,11 +36,11 @@ const startingData = [
     id: 3,
     location: "Seattle, Washington",
     price: "100",
-    tags: ["condo", "guesthouse"],
-    // farm: false,
+    // tags: ["condo", "guesthouse"],
+    farm: false,
     // cabin: false,
     // tower: false,
-    // condo: true,
+    condo: true,
     // guesthouse: true
   }
 ];

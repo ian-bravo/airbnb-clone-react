@@ -12,6 +12,13 @@ function PlaceForm(props) {
     }));
   }
 
+  function handleChangeCheckbox(event) {
+    setFormData((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.checked,
+    }));
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     
@@ -19,6 +26,7 @@ function PlaceForm(props) {
       ...formData,
       id: place ? place.id : uuid(),
     })
+    console.log("PlaceForm, handleSubmit, formData: ", formData);
   }
 
   const {
@@ -26,15 +34,24 @@ function PlaceForm(props) {
     date = '',
     description = '',
     price = '',
-    tags = '',
+    farm = false,  //<-------------- 10 Jan 2024
+    condo = false, //<-------------- 10 Jan 2024
   } = formData || {};
 
-  tags = ['condo', 'farm'];
+  // ADD PLACE FORM:
+  // checkboxes start empty.
+  // if user checks / unchecks boxes, update an array of tag values
+  // then use this array to update formData
 
-  // if user checks the boxes, then update this array.
-  // if user unchecks the boxes, then update this array.
-  //checked ? 
-  // Pre-populating checkboxes...
+  // EDIT PLACE FORM:
+  // refer to formData's 'tags' property.
+  // read this, then update the state of the correlating checkboxes (checked or not) -- if string is in "tags", then check the box with that name
+  // if user checks / unchecks boxes, update an array of tag values
+  // then use this array to update formData
+
+  //upon edit, details/list not updating - 10 Jan 2024
+  //is handle submit saving data? yes
+  //have to click then unclick to get 'false' for checkbox,
 
   return (
     <>
@@ -48,6 +65,7 @@ function PlaceForm(props) {
             onChange={handleFormFieldChange}
           />
         </label>
+        <br/>
         <label>Date:
           <input
             type="text"
@@ -56,6 +74,7 @@ function PlaceForm(props) {
             onChange={handleFormFieldChange}
           />
         </label>
+        <br/>
         <label>Description:
           <input
             type="text"
@@ -64,6 +83,7 @@ function PlaceForm(props) {
             onChange={handleFormFieldChange}
           />
         </label>
+        <br/>
         <label>Price:
           <input
             type="text"
@@ -72,14 +92,27 @@ function PlaceForm(props) {
             onChange={handleFormFieldChange}
           />
         </label>
-        <label>Tag:
+        <br/>
+        <label><strong>Tag:</strong>
+          <br/>
+          <label>Farm
           <input
             type="checkbox"
-            name="tag"
-            value={price}
-            onChange={handleFormFieldChange}
+            name="farm"
+            value={farm}
+            onChange={handleChangeCheckbox}
+            />
+            </label>
+           <label>Condo
+          <input
+            type="checkbox"
+            name="condo"
+            value={condo}
+            onChange={handleChangeCheckbox}
           />
+          </label>
         </label>
+        <br/>
         <button type="submit">{place ? "Update Details" : "Add New Place"}</button>
         {/* <button type="button" onClick={onCancel}>Cancel</button> */}
       </form>
